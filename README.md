@@ -1,5 +1,8 @@
 # datadog-mock
 
+[![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/nikscorp/datadog-mock)](https://hub.docker.com/repository/docker/nikscorp/rhymes)
+
+
 ## Overview
 
 This is a fork from https://github.com/jancajthaml-devops/datadog-mock.
@@ -10,7 +13,7 @@ datadog-mock is a golang statsd mock server listening on port 8125 and relaying 
 ### Changes
 - simplify docker-compose file to only run the service
 - add building the app and running autotests to Dockerfile
-- DockerHub automated build (TODO)
+- DockerHub automated build
 - switch to go dep (no experience about modules)
 - add basic autotests with go testing
 
