@@ -20,7 +20,7 @@ datadog-mock is a golang statsd mock server listening on port 8125 and relaying 
 ### Known issues
 - incorrect handling of service checks and events dogstatd messeges (see skipped tests)
 
-## Build adn run tests
+## Build and run tests
 
 If you want to build image and run tests by yourself:
 ```
