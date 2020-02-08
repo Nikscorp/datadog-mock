@@ -12,19 +12,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM scratch
+FROM golang:1.13-alpine as build
+LABEL maintainer="Nikscorp <voynov@nikscorp.com>"
 
-MAINTAINER Jan Cajthaml <jan.cajthaml@gmail.com>
+ENV \
+    CGO_ENABLED=0 \
+    GOOS=linux \
+    GOARCH=amd64
 
-ARG VERSION
-ARG SOURCE
+ADD app /go/src/datadog-mock/app
+ADD vendor /go/src/datadog-mock/vendor/
 
-LABEL version=$VERSION
-LABEL description="DataDog mock server"
-LABEL source=$SOURCE
+WORKDIR /go/src/datadog-mock
 
-COPY pkg/datadog_mock /datadog_mock
+RUN go build -o datadog-mock datadog-mock/app/
+
+RUN go test -count 1 -v ./...
+
+FROM alpine:3.11
+
+LABEL maintainer="Nikscorp <voynov@nikscorp.com>"
+
+COPY --from=build /go/src/datadog-mock/datadog-mock /srv/datadog-mock
 
 EXPOSE 8125/UDP
 
-ENTRYPOINT ["/datadog_mock"]
+ENTRYPOINT ["/srv/datadog-mock"]

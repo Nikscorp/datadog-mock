@@ -1,25 +1,39 @@
-# datadog-mock #
+# datadog-mock
+
+## Overview
+
+This is a fork from https://github.com/jancajthaml-devops/datadog-mock.
+The purpose of fork is to modify the project structure and improve docker and compose files.
 
 datadog-mock is a golang statsd mock server listening on port 8125 and relaying events to stdout.
 
-[![Docker Version](https://images.microbadger.com/badges/version/jancajthaml/datadog_mock.svg)](https://microbadger.com/images/jancajthaml/datadog_mock)
-[![Static Analysis](https://api.codacy.com/project/badge/Grade/c5c255a292f84cf88972f92f74f9174d)](https://www.codacy.com/app/jan-cajthaml/datadog-mock?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jancajthaml/datadog-mock&amp;utm_campaign=Badge_Grade) [![Go Report Card](https://goreportcard.com/badge/jancajthaml-bash/datadog-mock)](https://goreportcard.com/report/jancajthaml-bash/datadog-mock)
+### Changes
+- simplify docker-compose file to only run the service
+- add building the app and running autotests to Dockerfile
+- DockerHub automated build (TODO)
+- switch to go dep (no experience about modules)
+- add basic autotests with go testing
 
-## Getting started ##
+### Known issues
+- incorrect handling of service checks and events dogstatd messeges (see skipped tests)
 
-Bootstrap environment with `make install test` then grab `./target/datadog_mock`
-or docker image `datadog/mock`.
+## Build adn run tests
 
-## Testing ##
+If you want to build image and run tests by yourself:
+```
+docker-compose build
+```
 
-Run in docker with `make run` or `./target/datadog_mock` locally.
+## Run
 
-When datadog/mock is running you can either test simple relay
-`./dev/event-producer.sh` or siege with `make perf`.
+```
+docker-compose pull
+docker-compose up -d
+```
 
-## License ##
+## License
 
 This service is distributed under the Apache License, Version 2.0 license found
 in the [LICENSE](./LICENSE) file.
 
-
+Original project: https://github.com/jancajthaml-devops/datadog-mock

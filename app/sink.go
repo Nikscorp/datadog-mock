@@ -16,7 +16,7 @@ package main
 
 import (
 	"context"
-	"fmt"
+	"log"
 	"net"
 	"os"
 	"strings"
@@ -48,7 +48,7 @@ func (r *Sink) ReadFromUDP(conn *net.UDPConn) {
 		case n == 0:
 			continue
 		case err != nil:
-			fmt.Println(err)
+			log.Println(err)
 			continue
 		default:
 		}
@@ -63,13 +63,13 @@ func (r *Sink) Run(ctx context.Context) {
 	addr, err := net.ResolveUDPAddr("udp", ":8125")
 
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		os.Exit(1)
 	}
 
 	conn, err := net.ListenUDP("udp", addr)
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		os.Exit(1)
 	}
 

@@ -16,7 +16,7 @@ package main
 
 import (
 	"context"
-	"fmt"
+	"log"
 	"regexp"
 	"strings"
 )
@@ -56,8 +56,8 @@ func processEvent(event []byte) {
 	parsed := string(event)
 	match := pattern.FindStringSubmatch(parsed)
 	if len(match) < 3 {
-		fmt.Println("Invalid event", parsed)
+		log.Println("Invalid event", parsed)
 		return
 	}
-	fmt.Println(strings.TrimSuffix(parsed, "\n"))
+	log.Println(strings.TrimSuffix(parsed, "\n"))
 }
