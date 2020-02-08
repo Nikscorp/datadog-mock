@@ -1,6 +1,6 @@
 # datadog-mock
 
-[![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/nikscorp/datadog-mock)](https://hub.docker.com/repository/docker/nikscorp/rhymes)
+[![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/nikscorp/datadog-mock)](https://hub.docker.com/repository/docker/nikscorp/datadog-mock)
 
 
 ## Overview
@@ -19,6 +19,7 @@ datadog-mock is a golang statsd mock server listening on port 8125 and relaying 
 
 ### Known issues
 - incorrect handling of service checks and events dogstatd messeges (see skipped tests)
+- mixed data on simultaneous writes
 
 ## Build and run tests
 
